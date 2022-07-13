@@ -13,11 +13,9 @@ import { Entypo } from '@expo/vector-icons';
 const iconColor = "#6c5ce7";
 
 const HotelCard = ({ info, navigation }: any) => {
+  console.log('aca toy', info);
+  // const { nombre, jornada, ubicacion, salarioMin, region, image } = info;
   const { id, name, categories, country, price, distance, image } = info;
-
-  const detailsCard = (id: any) => {
-    Alert.alert("Bienvenido a mi App", `${id}`, [{ text: "OK" }]);
-  };
 
   return (
     <View style={styles.container}>
@@ -29,18 +27,38 @@ const HotelCard = ({ info, navigation }: any) => {
         </TouchableOpacity>
         <View style={styles.infoStyle}>
           <Text style={styles.titleStyle}>{name}</Text>
-          <View style={styles.iconFavorite}><Entypo name="heart-outlined" size={34} color="#161153" /></View>
           <Text style={styles.categoryStyle}>{categories}</Text>
           <View style={styles.iconLabelStyle}>
             <IconLabel
-              name="direction"
+              name="navigate-outline"
               label={country}
               color={iconColor}
             />
-            <IconLabel name="location-pin" label={distance} color={iconColor} />
+            <IconLabel name="ios-pin" label={distance} color={iconColor} />
           </View>
         </View>
       </View>
+
+      {/* <View style={styles.cardContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
+          <ImageBackground style={styles.imageStyle} source={{ uri: 'https://www.teknofilo.com/wp-content/uploads/2020/03/whatsapp-1280x720.jpg' }}>
+            <Text style={styles.textPrice}>{salarioMin}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+        <View style={styles.infoStyle}>
+          <Text style={styles.titleStyle}>{nombre}</Text>
+          <View style={styles.iconFavorite}><Entypo name="heart-outlined" size={34} color="#161153" /></View>
+          <Text style={styles.categoryStyle}>{jornada}</Text>
+          <View style={styles.iconLabelStyle}>
+            <IconLabel
+              name="direction"
+              label={ubicacion}
+              color={iconColor}
+            />
+            <IconLabel name="location-pin" label={region} color={iconColor} />
+          </View>
+        </View>
+      </View> */}
     </View>
   );
 };
