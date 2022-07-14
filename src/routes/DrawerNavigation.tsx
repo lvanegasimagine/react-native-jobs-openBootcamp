@@ -9,7 +9,7 @@ import {
 } from "../screen";
 
 import MenuItems from "../menu/MenuItems";
-import HotelDetails from "../components/HotelDetails";
+import JobsDetails from "../components/JobsDetails";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,7 +24,7 @@ const DrawerNavigation = () => {
         <Drawer.Screen name="Bookings" component={BookingScreen} />
         <Drawer.Screen name="Cities" component={CitiesScreen} />
         <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen name="Details" component={HotelDetails} />
+        <Drawer.Screen name="Details" component={JobsDetails} />
       </Drawer.Navigator>
   );
 };

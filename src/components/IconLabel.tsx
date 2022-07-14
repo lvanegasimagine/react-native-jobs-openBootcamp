@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontSize: 12,
+    textTransform: 'capitalize'
   },
   iconStyle: {
     marginRight: 2,

@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 
-const MenuButtonItem = ({ text, icon, onPress }) => {
+const MenuButtonItem = ({ text, icon, onPress }: any) => {
   return (
     <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
       <AntDesign name={icon} size={24} color="black" />

@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
-// import axios from 'axios';
-// import Card from "../components/HotelCard";
-import { sitios } from "../data/sitios";
-import JobsResponse from "../api/JobsResponse";
+import AxiosConfig from "../config/AxiosConfig";
 import JobsCard from "../components/JobsCard";
+import { Datum, JobsInterface } from "../interface/Jobs.Interface";
 
 const HomeScreen = ({ navigation }: any) => {
 
   const [jobs, setJobs]: any = useState([]);
   const [loading, setLoading]: any = useState(true);
-
-  console.log("🚀 Hey Ana", jobs)
+  const { data } = jobs
 
   useEffect(() => {
-    getJobs();
+    getJobs()
   }, [])
 
   const getJobs = () => {
-    JobsResponse.get('/ofertas')
+    AxiosConfig.get<JobsInterface>('/ofertas')
       .then(async function (response) {
         setJobs(response.data);
         setLoading(false);
@@ -29,21 +26,15 @@ const HomeScreen = ({ navigation }: any) => {
   }
   return (
     <View style={styles.container}>
-      {loading && <Text>Loading..</Text>}
-      {/* {jobs && ( */}
-      {/* <FlatList
-        data={jobs.data}
-        renderItem={({ item }) => <JobsCard info={item} />}
-        keyExtractor={({ item }) => item.id}
-        showsVerticalScrollIndicator={false}
-      /> */}
-
-      {/* )} */}
-
-      {
-        jobs?.data?.map((j: any) => {
-        return <Text>Hola</Text>})
-      }
+      {loading && <Text style={styles.container}>Loading..</Text>}
+      {data?.data && (
+        <FlatList
+          data={data?.data}
+          renderItem={({ item }) => <JobsCard info={item} navigation={navigation} />}
+          keyExtractor={(item, index) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };

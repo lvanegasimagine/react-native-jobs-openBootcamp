@@ -13,33 +13,10 @@ import { Entypo } from '@expo/vector-icons';
 const iconColor = "#6c5ce7";
 
 const HotelCard = ({ info, navigation }: any) => {
-  console.log('aca toy', info);
-  // const { nombre, jornada, ubicacion, salarioMin, region, image } = info;
-  const { id, name, categories, country, price, distance, image } = info;
-
+  const { nombre, jornada, ubicacion, salarioMin, region, image } = info;
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
-          <ImageBackground style={styles.imageStyle} source={{ uri: image }}>
-            <Text style={styles.textPrice}>{price}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <View style={styles.infoStyle}>
-          <Text style={styles.titleStyle}>{name}</Text>
-          <Text style={styles.categoryStyle}>{categories}</Text>
-          <View style={styles.iconLabelStyle}>
-            <IconLabel
-              name="navigate-outline"
-              label={country}
-              color={iconColor}
-            />
-            <IconLabel name="ios-pin" label={distance} color={iconColor} />
-          </View>
-        </View>
-      </View>
-
-      {/* <View style={styles.cardContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
           <ImageBackground style={styles.imageStyle} source={{ uri: 'https://www.teknofilo.com/wp-content/uploads/2020/03/whatsapp-1280x720.jpg' }}>
             <Text style={styles.textPrice}>{salarioMin}</Text>
@@ -58,7 +35,7 @@ const HotelCard = ({ info, navigation }: any) => {
             <IconLabel name="location-pin" label={region} color={iconColor} />
           </View>
         </View>
-      </View> */}
+      </View>
     </View>
   );
 };
