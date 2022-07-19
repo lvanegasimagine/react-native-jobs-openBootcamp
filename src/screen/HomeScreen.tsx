@@ -24,9 +24,13 @@ const HomeScreen = ({ navigation }: any) => {
         console.log(error)
       })
   }
+
+  if(loading){
+    return <View style={styles.containerLoading}><Text style={{fontSize: 36}}>Loading...</Text></View>
+  }
   return (
     <View style={styles.container}>
-      {loading && <Text style={styles.container}>Loading..</Text>}
+      
       {data?.data && (
         <FlatList
           data={data?.data}
@@ -45,6 +49,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
+  containerLoading: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
 
 export default HomeScreen;

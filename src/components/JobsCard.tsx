@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
     StyleSheet,
     Dimensions,
-    ImageBackground, 
+    ImageBackground,
     TouchableOpacity,
+    ToastAndroid
 } from "react-native";
 import IconLabel from "./IconLabel";
 import { Entypo } from '@expo/vector-icons';
+
 const iconColor = "#6c5ce7";
 
 const JobsCard = ({ info, navigation }: any) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+
     const { nombre, jornada, ubicacion, region } = info;
+
+    const addFavorite = () => {
+        ToastAndroid.show('Agregado a Favorito ❤️🥳!', ToastAndroid.SHORT);
+        setIsFavorite(!isFavorite)
+        console.log('Agrego a favorito');
+    }
+
+    const removeFavorite = () => {
+        ToastAndroid.show('Eliminado de Favorito 💔😟!', ToastAndroid.SHORT);
+        setIsFavorite(!isFavorite)
+        console.log('Removido de favorito');
+
+    }
     return (
         <View style={styles.container}>
             <View style={styles.cardContainer}>
@@ -21,9 +38,11 @@ const JobsCard = ({ info, navigation }: any) => {
                     </ImageBackground>
                 </TouchableOpacity>
                 <View style={styles.infoStyle}>
-                    <Text style={styles.titleStyle}>{nombre}</Text>
-                    <View style={styles.iconFavorite}><Entypo name="heart-outlined" size={34} color="#161153" /></View>
-                    <Text style={styles.categoryStyle}>Jornada: <Text style={{fontWeight: 'bold'}}>{jornada}</Text> </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
+                        <Text style={styles.titleStyle}>{nombre}</Text>
+                    </TouchableOpacity>
+                    <View style={styles.iconFavorite}><Entypo name={isFavorite ? "heart" : 'heart-outlined'} onPress={!isFavorite ? addFavorite : removeFavorite} size={34} color={isFavorite ? '#e0264d' : '#e1e3e4'} /></View>
+                    <Text style={styles.categoryStyle}>Jornada: <Text style={{ fontWeight: 'bold' }}>{jornada}</Text> </Text>
                     <View style={styles.iconLabelStyle}>
                         <IconLabel
                             name="direction"

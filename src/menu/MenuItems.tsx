@@ -20,12 +20,13 @@ const MenuItems = ({ navigation }: any) => {
           style={styles.imageProfile}
         />
         <Text style={styles.title}> Luis Vanegas </Text>
-        <View style={styles.info}>
+        <Text style={styles.subtitle}>lvanegas1429@gmail.com</Text>
+        {/* <View style={styles.info}>
           <Text style={styles.metric}>Cities</Text>
           <Text style={styles.metric}>Reviews</Text>
           <Text style={styles.metric}>Photos</Text>
           <Text style={styles.metric}>Badges</Text>
-        </View>
+        </View> */}
       </ImageBackground>
       <View style={styles.containerMenu}>
         <MenuButtonItem
@@ -35,7 +36,7 @@ const MenuItems = ({ navigation }: any) => {
         />
         <MenuButtonItem
           text="Favorites"
-          icon="heart"
+          icon="hearto"
           onPress={() => navigation.navigate("Favorites")}
         />
         <MenuButtonItem
@@ -85,12 +86,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  info: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-  },
+  // info: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   flexDirection: "row",
+  // },
   title: {
     fontSize: 25,
     color: "#fff",
@@ -98,13 +99,19 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     marginVertical: 8,
   },
-  metric: {
-    color: "#fff",
-    fontSize: 16,
-    marginStart: 4,
-    alignItems: "center",
-    marginRight: 5,
+  subtitle: {
+    fontSize: 12,
+    color: "#aaaa",
+    fontWeight: "400",
+    marginLeft: 5
   },
+  // // metric: {
+  // //   color: "#fff",
+  // //   fontSize: 16,
+  // //   marginStart: 4,
+  // //   alignItems: "center",
+  // //   marginRight: 5,
+  // },
   menu: {
     fontSize: 20,
     fontWeight: "bold",
