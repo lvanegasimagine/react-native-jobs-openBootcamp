@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import AxiosConfig from "../config/AxiosConfig";
 import JobsCard from "../components/JobsCard";
-import { Datum, JobsInterface } from "../interface/Jobs.Interface";
+import { JobsInterface } from "../interface/Jobs.Interface";
 
 const HomeScreen = ({ navigation }: any) => {
 

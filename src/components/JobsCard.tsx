@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    ImageBackground,
+    ImageBackground, 
     TouchableOpacity,
 } from "react-native";
 import IconLabel from "./IconLabel";
@@ -13,7 +13,6 @@ const iconColor = "#6c5ce7";
 
 const JobsCard = ({ info, navigation }: any) => {
     const { nombre, jornada, ubicacion, region } = info;
-
     return (
         <View style={styles.container}>
             <View style={styles.cardContainer}>

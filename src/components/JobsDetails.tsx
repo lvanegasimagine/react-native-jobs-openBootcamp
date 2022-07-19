@@ -6,7 +6,8 @@ import {
   Dimensions,
   ImageBackground,
   ScrollView,
-  FlatList
+  Linking,
+  Alert
 } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -16,6 +17,15 @@ import Divisor from "../utils/Divisor";
 const JobsDetails = ({ route, navigation }: any) => {
 
   const { nombre, jornada, presencialidad, experiencia, empresa, ubicacion, region, descripcion, salarioMin, salarioMax, tecnologias, idiomas, beneficios } = route.params;
+
+  const handleNavigation = async (url: string) => {
+      const isSupported = await Linking.canOpenURL(url)
+      if(isSupported){
+        await Linking.openURL(url)
+      }else{
+        Alert.alert(`Don't know how to this url: ${url}`)
+      }
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -64,7 +74,7 @@ const JobsDetails = ({ route, navigation }: any) => {
       ))}
 
       <Divisor title="Informacion del Anunciate" color="#e37a1a" />
-      <Pressable onPress={() => navigation.navigate('Login')}>
+      <Pressable onPress={() => handleNavigation(empresa?.url)}>
         <Text style={styles.title}>{empresa?.nombre}</Text>
       </Pressable>
       <Text style={styles.subtitle}> 📍 {empresa?.ubicacion} </Text>
