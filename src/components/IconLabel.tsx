@@ -2,11 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-const IconLabel = ({ name, label, color }: any) => {
+const info = (label: String, sublabel: string) => {
+    
+}
+
+const IconLabel = ({ name, label, sublabel = '', color }: any) => {
   return (
     <View style={styles.container}>
       <Entypo name={name} size={14} color={color} style={styles.iconStyle}   />
-      <Text style={styles.labelStyle}>{label}</Text>
+      {sublabel.length > 0 ? <Text style={styles.labelStyle}>{label}, {sublabel}</Text> : <Text style={styles.labelStyle}>{label}</Text>}
     </View>
   );
 };

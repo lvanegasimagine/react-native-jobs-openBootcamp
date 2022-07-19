@@ -15,7 +15,6 @@ const NavigationRoutes = () => {
       <Stack.Navigator screenOptions={{headerShown: false}} >
         <Stack.Screen name="Info" component={DrawerNavigation} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        {/* <Stack.Screen name="Navigation" component={UrlNavigation} /> */}
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
