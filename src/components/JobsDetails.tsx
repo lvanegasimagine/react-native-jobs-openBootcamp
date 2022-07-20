@@ -7,7 +7,7 @@ import {
   ImageBackground,
   ScrollView,
   Linking,
-  Alert
+  Alert,
 } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -16,15 +16,15 @@ import Divisor from "../utils/Divisor";
 
 const JobsDetails = ({ route, navigation }: any) => {
 
-  const { nombre, jornada, presencialidad, experiencia, empresa, ubicacion, region, descripcion, salarioMin, salarioMax, tecnologias, idiomas, beneficios } = route.params;
+  const { nombre, jornada, presencialidad, experiencia, empresa, pais, comunidad, region, descripcion, salarioMin, salarioMax, tecnologias, idiomas, beneficios } = route.params;
 
   const handleNavigation = async (url: string) => {
-      const isSupported = await Linking.canOpenURL(url)
-      if(isSupported){
-        await Linking.openURL(url)
-      }else{
-        Alert.alert(`Don't know how to this url: ${url}`)
-      }
+    const isSupported = await Linking.canOpenURL(url)
+    if (isSupported) {
+      await Linking.openURL(url)
+    } else {
+      Alert.alert(`Don't know how to this url: ${url}`)
+    }
   }
 
   return (
@@ -44,7 +44,8 @@ const JobsDetails = ({ route, navigation }: any) => {
         <View style={styles.iconLabelStyle}>
           <IconLabel
             name="direction"
-            label={ubicacion}
+            label={pais?.nombre}
+            sublabel={comunidad?.nombre}
             color={'#6c5ce7'}
           />
           <IconLabel name="location-pin" label={region} color={'#6c5ce7'} />
@@ -77,7 +78,7 @@ const JobsDetails = ({ route, navigation }: any) => {
       <Pressable onPress={() => handleNavigation(empresa?.url)}>
         <Text style={styles.title}>{empresa?.nombre}</Text>
       </Pressable>
-      <Text style={styles.subtitle}> 📍 {empresa?.ubicacion} </Text>
+      <Text style={styles.subtitle}> 📍 {pais?.nombre}, {comunidad?.nombre} </Text>
       <Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
         <Text style={styles.text}>Aplica Aqui</Text>
       </Pressable>
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     padding: 10,
     alignContent: "center",
     alignSelf: "center",
-    // backgroundColor: 'white'
   },
   imageStyle: {
     height: 200,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingTop: 20,
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   subtitle: {

@@ -21,16 +21,6 @@ const JobsCard = ({ info, navigation }: any) => {
 
     const { nombre, jornada, pais, comunidad, region } = info;
 
-    const [refreshing, setRefreshing] = React.useState(false);
-
-    const pullMe = () => {
-        setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false)
-        }, 10000);
-    }
-
-
     const addFavorite = () => {
         ToastAndroid.show('Agregado a Favorito ❤️🥳!', ToastAndroid.SHORT);
         setIsFavorite(!isFavorite)
@@ -44,35 +34,30 @@ const JobsCard = ({ info, navigation }: any) => {
 
     }
     return (
-        // <ScrollView
-        //     contentContainerStyle={styles.scrollView}
-        //     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => pullMe()} />}>
-            <View style={styles.container}>
-                <View style={styles.cardContainer}>
+        <View style={styles.container}>
+            <View style={styles.cardContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
+                    <ImageBackground style={styles.imageStyle} source={{ uri: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/256/job4_f.jpg' }}>
+                    </ImageBackground>
+                </TouchableOpacity>
+                <View style={styles.infoStyle}>
                     <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
-                        <ImageBackground style={styles.imageStyle} source={{ uri: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/256/job4_f.jpg' }}>
-                        </ImageBackground>
+                        <Text style={styles.titleStyle}>{nombre}</Text>
                     </TouchableOpacity>
-                    <View style={styles.infoStyle}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Details", info)}>
-                            <Text style={styles.titleStyle}>{nombre}</Text>
-                        </TouchableOpacity>
-                        <View style={styles.iconFavorite}><Entypo name={isFavorite ? "heart" : 'heart-outlined'} onPress={!isFavorite ? addFavorite : removeFavorite} size={34} color={isFavorite ? '#e0264d' : '#e1e3e4'} /></View>
-                        <Text style={styles.categoryStyle}>Jornada: <Text style={{ fontWeight: 'bold' }}>{jornada}</Text> </Text>
-                        <View style={styles.iconLabelStyle}>
-                            <IconLabel
-                                name="direction"
-                                label={pais?.nombre}
-                                sublabel={comunidad?.nombre}
-                                color={iconColor}
-                            />
-                            <IconLabel name="location-pin" label={region} color={iconColor} />
-                        </View>
+                    <TouchableOpacity style={styles.iconFavorite}><Entypo name={isFavorite ? "heart" : 'heart-outlined'} onPress={!isFavorite ? addFavorite : removeFavorite} size={34} color={isFavorite ? '#e0264d' : '#e1e3e4'} /></TouchableOpacity>
+                    <Text style={styles.categoryStyle}>Jornada: <Text style={{ fontWeight: 'bold' }}>{jornada}</Text> </Text>
+                    <View style={styles.iconLabelStyle}>
+                        <IconLabel
+                            name="direction"
+                            label={pais?.nombre}
+                            sublabel={comunidad?.nombre}
+                            color={iconColor}
+                        />
+                        <IconLabel name="location-pin" label={region} color={iconColor} />
                     </View>
-
                 </View>
             </View>
-        // </ScrollView>
+        </View>
     )
 }
 
@@ -85,12 +70,6 @@ const styles = StyleSheet.create({
         width: deviceWidth - 20,
         alignItems: "center",
         marginTop: 25,
-    },
-    scrollView: {
-        flex: 1,
-        backgroundColor: 'pink',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     cardContainer: {
         width: deviceWidth - offset,
