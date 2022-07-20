@@ -7,8 +7,6 @@ import {
     ImageBackground,
     TouchableOpacity,
     ToastAndroid,
-    RefreshControl,
-    ScrollView
 } from "react-native";
 import IconLabel from "./IconLabel";
 import { Entypo } from '@expo/vector-icons';
@@ -23,13 +21,13 @@ const JobsCard = ({ info, navigation }: any) => {
 
     const addFavorite = () => {
         ToastAndroid.show('Agregado a Favorito ❤️🥳!', ToastAndroid.SHORT);
-        setIsFavorite(!isFavorite)
+        setIsFavorite(prevFavorite => !prevFavorite )
         console.log('Agrego a favorito');
     }
 
     const removeFavorite = () => {
         ToastAndroid.show('Eliminado de Favorito 💔😟!', ToastAndroid.SHORT);
-        setIsFavorite(!isFavorite)
+        setIsFavorite(prevFavorite => !prevFavorite )
         console.log('Removido de favorito');
 
     }
